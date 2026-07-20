@@ -3,205 +3,230 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SANSARSALVO55 // ZAUN TACTICAL GALLERY</title>
-<meta name="description" content="SANSARSALVO55 — Zaun Undercity tarzı meme &amp; görsel galerisi.">
-<link rel="stylesheet" href="efekaraer.css">
+<title>İYİ Mİ ÇOK MU FAÇA?</title>
+<meta name="description" content="SANSARSALVO55 için Runeterra temalı, tek sayfalık bir arşiv ve meme galerisi.">
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="is-sidebar-open">
 
-<!-- hidden SVG noise filter, used by .grain overlay -->
 <svg width="0" height="0" style="position:absolute">
-  <filter id="zaunNoise">
-    <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="noise"/>
+  <filter id="archiveNoise">
+    <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch" result="noise"/>
     <feColorMatrix in="noise" type="matrix"
       values="0 0 0 0 0
               0 0 0 0 0
               0 0 0 0 0
-              0 0 0 0.9 0"/>
+              0 0 0 0.8 0"/>
   </filter>
 </svg>
 
+<div class="ambient ambient--top" aria-hidden="true"></div>
+<div class="ambient ambient--bottom" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
-<div class="vignette" aria-hidden="true"></div>
 
-<nav class="dock" aria-label="Hızlı gezinme">
-  <a href="#augments">Augments</a>
-  <a href="#wall">Art Wall</a>
-  <a href="#comms">Comms</a>
-</nav>
+<button class="sidebar-toggle" id="sidebarToggle" aria-controls="sidebar" aria-expanded="true">
+  <span class="sidebar-toggle__bars" aria-hidden="true"></span>
+  <span class="sidebar-toggle__label">Menü</span>
+</button>
 
-<!-- ============ HERO ============ -->
-<header class="hero">
-  <p class="hero__eyebrow">Undercity Broadcast · Kanal 07</p>
-  <h1 class="glitch" data-text="SANSARSALVO55">
-    <span>SANSARSALVO55</span>
-    <span class="accent">// ZAUN TACTICAL GALLERY</span>
-  </h1>
-  <p class="hero__sub">Rank: <b>Master</b> — Underground Intel Node</p>
-  <p class="hero__scan">▓▒░ sinyal taranıyor · efe karaer · zaun sektör 7 ░▒▓</p>
-</header>
+<div class="backdrop" id="backdrop" aria-hidden="true"></div>
 
-<!-- ============ TACTICAL AUGMENTS ============ -->
-<section class="section" id="augments">
-  <div class="section__head">
-    <span class="section__num">◇ 01</span>
-    <h2 class="section__title">Taktiksel <em>Eklentiler</em></h2>
-    <p class="section__desc">Efe'nin dijital kimliği — Piltover'ın temiz sosyal ikonları değil, Zaun'un kablolanmış sinir uçları.</p>
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <span class="brand__mark">SEX</span>
+    <div></br></br>
+      <p class="brand__title">Karaer </br> Arsiv</p>
+      <p class="brand__sub">falan filan dersin </p>
+    </div>
   </div>
 
-  <div class="augments">
+  <nav class="sidebar__nav" aria-label="Bölümler">
+    <a href="#home">Home</a>
+    <a href="#rank">Rank Board</a>
+    <a href="#gallery">Meme Gallery</a>
+    
+    <a href="#signals">Signals</a>
+  </nav>
 
-    <!-- RADAR INTERFACE -->
-    <article class="aug-card" style="--edge:var(--cyan)">
-      <svg class="aug-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
-        <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/>
-        <line x1="12" y1="12" x2="19" y2="6"/>
-      </svg>
-      <span class="aug-card__tag">Radar Interface</span>
-      <h3 class="aug-card__title">OP.GG</h3>
-      <p class="aug-card__desc">Canlı KDA ve mental çöküş matrisi.</p>
-      <a class="aug-card__link" href="https://op.gg/lol/summoners/tr/SANSARSALVO55-DEL%C4%B0" target="_blank" rel="noopener">Sinyali aç</a>
-    </article>
-
-    <!-- TACTICAL INTEL -->
-    <article class="aug-card" style="--edge:var(--acid)">
-      <svg class="aug-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
-        <rect x="4" y="4" width="16" height="16" rx="1"/>
-        <path d="M8 9h8M8 12h8M8 15h5"/>
-      </svg>
-      <span class="aug-card__tag">Tactical Intel</span>
-      <h3 class="aug-card__title">MetaTFT</h3>
-      <p class="aug-card__desc">Hyper-roll ve dahi strateji veri merkezi.</p>
-      <a class="aug-card__link" href="https://www.metatft.com/player/tr/SANSARSALVO55-DEL%C4%B0" target="_blank" rel="noopener">Sinyali aç</a>
-    </article>
-
-    <!-- ZAUN BOOMBOX -->
-    <article class="aug-card" style="--edge:var(--pink)">
-      <svg class="aug-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
-        <rect x="3" y="7" width="18" height="12" rx="1.5"/>
-        <circle cx="8" cy="13" r="2.4"/><circle cx="16" cy="13" r="2.4"/>
-        <path d="M9 7l1-3h4l1 3"/>
-      </svg>
-      <span class="aug-card__tag">Zaun Boombox</span>
-      <h3 class="aug-card__title">Spotify</h3>
-      <p class="aug-card__desc">LP kaybederken dinlenecek öfkeli ritimler.</p>
-      <a class="aug-card__link" href="https://open.spotify.com/user/11145638018?si=6Cn7l12bRzivJ0KYelxjyQ" target="_blank" rel="noopener">Sinyali aç</a>
-    </article>
-
-    <!-- CORPORATE MASK -->
-    <article class="aug-card" style="--edge:var(--sulfur)">
-      <svg class="aug-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
-        <path d="M12 3c4 0 7 3 7 7v4c0 4-3 7-7 7s-7-3-7-7V10c0-4 3-7 7-7Z"/>
-        <path d="M9 11h.01M15 11h.01M9 15c1 1 5 1 6 0"/>
-      </svg>
-      <span class="aug-card__tag">Corporate Mask</span>
-      <h3 class="aug-card__title">LinkedIn</h3>
-      <p class="aug-card__desc">Piltover elitleri için kurumsal arayüz layer'ı.</p>
-      <a class="aug-card__link" href="https://www.linkedin.com/in/efekaraer" target="_blank" rel="noopener">Sinyali aç</a>
-    </article>
-
-    <!-- MAIN NODE -->
-    <article class="aug-card" style="--edge:var(--cyan)">
-      <svg class="aug-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
-        <path d="M4 17l4-10 4 10M6.5 11h3M14 7h6M14 12h6M14 17h4"/>
-      </svg>
-      <span class="aug-card__tag">Main Node</span>
-      <h3 class="aug-card__title">efekaraer.com</h3>
-      <p class="aug-card__desc">Ana merkez ağ bağlantısı ve geliştirici terminali.</p>
-      <a class="aug-card__link" href="http://efekaraer.com" target="_blank" rel="noopener">Sinyali aç</a>
-    </article>
-
-    <!-- ENCRYPTED COMMS -->
-    <article class="aug-card" id="comms" style="--edge:var(--acid)">
-      <svg class="aug-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
-        <rect x="5" y="10" width="14" height="10" rx="1.5"/>
-        <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
-        <circle cx="12" cy="15" r="1.4" fill="currentColor" stroke="none"/>
-      </svg>
-      <span class="aug-card__tag">Encrypted Comms</span>
-      <h3 class="aug-card__title">E-posta</h3>
-      <p class="aug-card__desc">Şifreli taktiksel işbirlikleri kanalı.</p>
-      <a class="aug-card__link" href="mailto:efekaraer00@gmail.com">Sinyali aç</a>
-    </article>
-
+  <div class="sidebar__notes">
+    <p class="eyebrow">Guidance</p>
+    <p>Bu sayfa tek akışlıdır. Sidebar sadece gezinme için vardır, ekranı kapatmaz.</p>
   </div>
-</section>
+</aside>
 
-<!-- ============ ART WALL ============ -->
-<section class="section" id="wall">
-  <div class="section__head">
-    <span class="section__num">◇ 02</span>
-    <h2 class="section__title">The Art <em>Wall</em></h2>
-    <p class="section__desc">Duvara sıkıştırılmış sokak posterleri. Her biri bir sergi — her sergi bir travma. Görsellere tıkla, büyüsün.</p>
-  </div>
+<main class="main">
+  <section class="hero section reveal" id="home">
+    <div class="hero__copy">
+      <p class="eyebrow">Runeterra / archive / personal signal board</p>
+      <h1 class="glitch" data-text="SANSARSALVO55">
+        <span>SANSARSALVO55</span>
+        <span class="accent">Archive of Rank, Lore, and Noise</span>
+      </h1>
+      <p class="hero__lead">Bu sayfa artık okunur: rank kartı açık, sidebar toggle'lı, görsel düzen tek akışta ve tema Runeterra'nın daha rafine, daha editorial yüzünde.</p>
 
-  <div class="wall" id="wallGrid">
-
-    <button class="wall-card" data-idx="0">
-      <img class="wall-card__img" src="https://picsum.photos/seed/zaun-01/900/1100" alt="" loading="lazy">
-      <div class="wall-card__duo" aria-hidden="true"></div>
-      <span class="wall-card__stamp">#01</span>
-      <div class="wall-card__plate">
-        <p class="num">Exhibition #01</p>
-        <p class="cap">The Final Board — 7. seviyede 0 altınla kalma sanatı.</p>
+      <div class="hero__chips">
+        <span>Single file</span>
+        <span>No CSS libraries</span>
+        <span>Sidebar toggle</span>
+        <span>Lightbox gallery</span>
       </div>
-    </button>
+    </div>
 
-    <button class="wall-card" data-idx="1">
-      <img class="wall-card__img" src="https://picsum.photos/seed/zaun-02/900/700" alt="" loading="lazy">
-      <div class="wall-card__duo" aria-hidden="true"></div>
-      <span class="wall-card__stamp">#02</span>
-      <div class="wall-card__plate">
-        <p class="num">Canvas #02</p>
-        <p class="cap">Unmatched Pivot — Lobiyi şoke eden 8. bitiş stratejisi.</p>
+    
+  </section>
+
+  <section class="section reveal" id="rank">
+    <div class="section__head">
+      <span class="section__num">01</span>
+      <div>
+        <h2 class="section__title">Rank Board</h2>
+        <p class="section__desc">Bu bölüm, profilin ne yaptığını bir cümlede değil, net kartlarla anlatır.</p>
       </div>
-    </button>
+    </div>
 
-    <button class="wall-card" data-idx="2">
-      <img class="wall-card__img" src="https://picsum.photos/seed/zaun-03/700/700" alt="" loading="lazy">
-      <div class="wall-card__duo" aria-hidden="true"></div>
-      <span class="wall-card__stamp">#03</span>
-      <div class="wall-card__plate">
-        <p class="num">Relic #03</p>
-        <p class="cap">Flash'ı Duvara Atma Enstalasyonu — 40 dk'lık bir pişmanlık.</p>
+    <div class="rank-grid">
+      <article class="rank-card">
+        <p class="rank-card__kicker">Current rank</p>
+        <h3 class="rank-card__rank">MASTER</h3>
+        <p class="rank-card__copy"></p>
+
+        <div class="meter-list" aria-label="Odak göstergeleri">
+          <div class="meter-item"><span>pankyskillz</span><strong>31%</strong><i><b style="width:31%"></b></i></div>
+          <div class="meter-item"><span>grupsikis</span><strong>31%</strong><i><b style="width:31%"></b></i></div>
+          <div class="meter-item"><span>zencinefretorani</span><strong>62%</strong><i><b style="width:62%"></b></i></div>
+          <div class="meter-item"><span>babag</span><strong>99%</strong><i><b style="width:99%"></b></i></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section reveal" id="gallery">
+    <div class="section__head">
+      <span class="section__num">02</span>
+      <div>
+        <h2 class="section__title">Meme Gallery</h2>
+        <p class="section__desc">Fotoğraflar tek gridde değil, ritimle dağıtıldı. Büyütmek için tıkla.</p>
       </div>
-    </button>
+    </div>
 
-    <button class="wall-card" data-idx="3">
-      <img class="wall-card__img" src="https://picsum.photos/seed/zaun-04/800/1200" alt="" loading="lazy">
-      <div class="wall-card__duo" aria-hidden="true"></div>
-      <span class="wall-card__stamp">#04</span>
-      <div class="wall-card__plate">
-        <p class="num">Fragment #04</p>
-        <p class="cap">Baron'u Çalma Heykeli — smite şansının %1'lik anıtı.</p>
+    <div class="mosaic" id="galleryGrid">
+      <button class="photo reveal-item" data-caption="Chat ekranı meme" data-full="image%20copy%2016.png" style="--span:4; --ratio: 4 / 5">
+        <img src="image%20copy%2016.png" alt="Chat ekranı meme" loading="lazy">
+        <span>Text chaos</span>
+      </button>
+      <button class="photo reveal-item" data-caption="Beyaz tişörtte yakın plan selfie" data-full="image%20copy%2014.png" style="--span:3; --ratio: 3 / 4">
+        <img src="image%20copy%2014.png" alt="Beyaz tişörtte yakın plan selfie" loading="lazy">
+        <span>Close portrait</span>
+      </button>
+      <button class="photo reveal-item" data-caption="Filtreli portre meme" data-full="image%20copy%2013.png" style="--span:5; --ratio: 5 / 4">
+        <img src="image%20copy%2013.png" alt="Filtreli portre meme" loading="lazy">
+        <span>Filtered face</span>
+      </button>
+      <button class="photo reveal-item" data-caption="Açık renk filtreli portre" data-full="image%20copy%2012.png" style="--span:3; --ratio: 4 / 5">
+        <img src="image%20copy%2012.png" alt="Açık renk filtreli portre" loading="lazy">
+        <span>Soft cut</span>
+      </button>
+      <button class="photo reveal-item" data-caption="Blurred oturma odası fotoğrafı" data-full="image%20copy%2011.png" style="--span:4; --ratio: 4 / 4">
+        <img src="image%20copy%2011.png" alt="Blurred oturma odası fotoğrafı" loading="lazy">
+        <span>Soft blur</span>
+      </button>
+      <button class="photo reveal-item" data-caption="Sarı ışıklı gece selfie" data-full="image%20copy%2010.png" style="--span:5; --ratio: 5 / 5">
+        <img src="image%20copy%2010.png" alt="Sarı ışıklı gece selfie" loading="lazy">
+        <span>Night flare</span>
+      </button>
+      <button class="photo reveal-item" data-caption="Kasklı gece portresi" data-full="image%20copy%209.png" style="--span:4; --ratio: 4 / 5">
+        <img src="image%20copy%209.png" alt="Kasklı gece portresi" loading="lazy">
+        <span>Hard light</span>
+      </button>
+      <button class="photo reveal-item" data-caption="Yeşil tonlu tipografili portre" data-full="image%20copy%208.png" style="--span:4; --ratio: 4 / 5">
+        <img src="image%20copy%208.png" alt="Yeşil tonlu tipografili portre" loading="lazy">
+        <span>Poster face</span>
+      </button>
+      <button class="photo reveal-item" data-caption="Instagram yorum ekranı meme" data-full="image%20copy%207.png" style="--span:4; --ratio: 5 / 4">
+        <img src="image%20copy%207.png" alt="Instagram yorum ekranı meme" loading="lazy">
+        <span>Comment war</span>
+      </button>
+      <button class="photo reveal-item" data-caption="Sahte haber görseli meme" data-full="image%20copy%204.png" style="--span:4; --ratio: 5 / 4">
+        <img src="image%20copy%204.png" alt="Sahte haber görseli meme" loading="lazy">
+        <span>Press chaos</span>
+      </button>
+      <button class="photo reveal-item" data-caption="Blurred iki kişi oturma fotoğrafı" data-full="image%20copy%205.png" style="--span:5; --ratio: 5 / 4">
+        <img src="image%20copy%205.png" alt="Blurred iki kişi oturma fotoğrafı" loading="lazy">
+        <span>Blur duo</span>
+      </button>
+      <button class="photo reveal-item" data-caption="Mavi tonlu oyun karakteri fotoğrafı" data-full="image%20copy%2018.png" style="--span:3; --ratio: 3 / 4">
+        <img src="image%20copy%2018.png" alt="Mavi tonlu oyun karakteri fotoğrafı" loading="lazy">
+        <span>Game mode</span>
+      </button>
+      <button class="photo reveal-item" data-caption="Poster fotoğrafı elde tutulan portre" data-full="image%20copy%2020.png" style="--span:4; --ratio: 4 / 5">
+        <img src="image%20copy%2020.png" alt="Poster fotoğrafı elde tutulan portre" loading="lazy">
+        <span>Printed echo</span>
+      </button>
+      <button class="photo reveal-item" data-caption="Blurlu iç mekan fotoğrafı" data-full="image%20copy%2021.png" style="--span:5; --ratio: 5 / 4">
+        <img src="image%20copy%2021.png" alt="Blurlu iç mekan fotoğrafı" loading="lazy">
+        <span>Interior haze</span>
+      </button>
+      <button class="photo reveal-item" data-caption="Ofis ekranları önünde çalışma fotoğrafı" data-full="image%20copy%2015.png" style="--span:4; --ratio: 4 / 5">
+        <img src="image%20copy%2015.png" alt="Ofis ekranları önünde çalışma fotoğrafı" loading="lazy">
+        <span>Ops desk</span>
+      </button>
+      <button class="photo reveal-item" data-caption="Dışarıda sert poz meme" data-full="image%20copy%2017.png" style="--span:4; --ratio: 4 / 5">
+        <img src="image%20copy%2017.png" alt="Dışarıda sert poz meme" loading="lazy">
+        <span>Street stance</span>
+      </button>
+      <button class="photo reveal-item" data-caption="Karanlık portre meme" data-full="image%20copy%206.png" style="--span:4; --ratio: 4 / 5">
+        <img src="image%20copy%206.png" alt="Karanlık portre meme" loading="lazy">
+        <span>Night frame</span>
+      </button>
+    </div>
+  </section>
+
+  
+
+  <section class="section reveal" id="signals">
+    <div class="section__head">
+      <span class="section__num">04</span>
+      <div>
+        <h2 class="section__title">Signals</h2>
+        <p class="section__desc">Dış bağlantılar sade tutuldu; içerik, tema ve görsel düzen öne çıkıyor.</p>
       </div>
-    </button>
+    </div>
 
-    <button class="wall-card" data-idx="4">
-      <img class="wall-card__img" src="https://picsum.photos/seed/zaun-05/750/750" alt="" loading="lazy">
-      <div class="wall-card__duo" aria-hidden="true"></div>
-      <span class="wall-card__stamp">#05</span>
-      <div class="wall-card__plate">
-        <p class="num">Study #05</p>
-        <p class="cap">"İyi Şanslar Arkadaşlar" — savaş öncesi son yalanın portresi.</p>
-      </div>
-    </button>
+    <div class="signal-grid">
+      <a class="signal-card reveal-item" href="https://op.gg/lol/summoners/tr/SANSARSALVO55-DEL%C4%B0" target="_blank" rel="noopener">
+        <span>OP.GG</span>
+        <strong>Rank trace</strong>
+      </a>
+      <a class="signal-card reveal-item" href="https://www.metatft.com/player/tr/SANSARSALVO55-DEL%C4%B0" target="_blank" rel="noopener">
+        <span>MetaTFT</span>
+        <strong>Strategy feed</strong>
+      </a>
+      <a class="signal-card reveal-item" href="https://open.spotify.com/user/11145638018?si=6Cn7l12bRzivJ0KYelxjyQ" target="_blank" rel="noopener">
+        <span>Spotify</span>
+        <strong>Playlist signal</strong>
+      </a>
+      <a class="signal-card reveal-item" href="https://www.linkedin.com/in/efekaraer" target="_blank" rel="noopener">
+        <span>LinkedIn</span>
+        <strong>Professional face</strong>
+      </a>
+      <a class="signal-card reveal-item" href="http://efekaraer.com" target="_blank" rel="noopener">
+        <span>Main node</span>
+        <strong>efekaraer.com</strong>
+      </a>
+      <a class="signal-card reveal-item" href="mailto:efekaraer00@gmail.com">
+        <span>Mail</span>
+        <strong>efekaraer00@gmail.com</strong>
+      </a>
+    </div>
+  </section>
 
-    <button class="wall-card" data-idx="5">
-      <img class="wall-card__img" src="https://picsum.photos/seed/zaun-06/900/650" alt="" loading="lazy">
-      <div class="wall-card__duo" aria-hidden="true"></div>
-      <span class="wall-card__stamp">#06</span>
-      <div class="wall-card__plate">
-        <p class="num">Piece #06</p>
-        <p class="cap">Zafer Serisi — 3 galibiyet, 1 modem çökmesiyle kesintiye uğradı.</p>
-      </div>
-    </button>
+  <footer class="footer">
+    <p class="footer__mark">SANSARSALVO55 // RUNETERRA ARCHIVE</p>
+    <p class="footer__meta">A clean, single-scroll archive built without CSS libraries.</p>
+  </footer>
+</main>
 
-  </div>
-</section>
-
-<!-- ============ LIGHTBOX ============ -->
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
   <div class="lightbox__frame">
     <button class="lightbox__close" id="lightboxClose" aria-label="Kapat">✕</button>
     <img id="lightboxImg" src="" alt="">
@@ -209,60 +234,95 @@
   </div>
 </div>
 
-<!-- ============ FOOTER ============ -->
-<footer class="footer">
-  <span class="footer__mark">SANSARSALVO55 // ALL RIGHTS RESERVED IN THE RADS OF ZAUN</span>
-  <p class="footer__meta">Sector 7 · Undercity Broadcast Network</p>
-</footer>
-
 <script>
 (function(){
-  "use strict";
+  'use strict';
 
-  var wall = document.getElementById('wallGrid');
+  var body = document.body;
+  var sidebarToggle = document.getElementById('sidebarToggle');
+  var backdrop = document.getElementById('backdrop');
+  var sidebarLinks = document.querySelectorAll('.sidebar__nav a');
+
+  function setSidebar(open){
+    body.classList.toggle('is-sidebar-open', open);
+    sidebarToggle.setAttribute('aria-expanded', String(open));
+    backdrop.setAttribute('aria-hidden', String(!open));
+  }
+
+  sidebarToggle.addEventListener('click', function(){
+    setSidebar(!body.classList.contains('is-sidebar-open'));
+  });
+
+  backdrop.addEventListener('click', function(){
+    setSidebar(false);
+  });
+
+  sidebarLinks.forEach(function(link){
+    link.addEventListener('click', function(){
+      if (window.matchMedia('(max-width: 960px)').matches) {
+        setSidebar(false);
+      }
+    });
+  });
+
+  var revealItems = document.querySelectorAll('.reveal, .reveal-item');
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.18 });
+
+  revealItems.forEach(function(item){ observer.observe(item); });
+
+  var photos = document.querySelectorAll('.photo');
   var lightbox = document.getElementById('lightbox');
-  var lbImg = document.getElementById('lightboxImg');
-  var lbCaption = document.getElementById('lightboxCaption');
-  var lbClose = document.getElementById('lightboxClose');
+  var lightboxImg = document.getElementById('lightboxImg');
+  var lightboxCaption = document.getElementById('lightboxCaption');
+  var lightboxClose = document.getElementById('lightboxClose');
   var lastFocused = null;
 
-  function openLightbox(card){
-    var img = card.querySelector('.wall-card__img');
-    var num = card.querySelector('.num').textContent;
-    var cap = card.querySelector('.cap').textContent;
-
-    lbImg.src = img.src.replace(/\/\d+\/\d+$/, '/1400/1400');
-    lbImg.alt = cap;
-    lbCaption.innerHTML = '<b>' + num + '</b> — ' + cap;
-
+  function openLightbox(photo){
+    var full = photo.getAttribute('data-full');
+    var caption = photo.getAttribute('data-caption');
     lastFocused = document.activeElement;
+    lightboxImg.src = full;
+    lightboxImg.alt = caption;
+    lightboxCaption.textContent = caption;
     lightbox.classList.add('is-open');
     lightbox.setAttribute('aria-hidden', 'false');
-    lbClose.focus();
-    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    lightboxClose.focus();
   }
 
   function closeLightbox(){
     lightbox.classList.remove('is-open');
     lightbox.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
     if (lastFocused) lastFocused.focus();
   }
 
-  wall.addEventListener('click', function(e){
-    var card = e.target.closest('.wall-card');
-    if (card) openLightbox(card);
+  photos.forEach(function(photo){
+    photo.addEventListener('click', function(){ openLightbox(photo); });
   });
 
-  lbClose.addEventListener('click', closeLightbox);
-
-  lightbox.addEventListener('click', function(e){
-    if (e.target === lightbox) closeLightbox();
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function(event){
+    if (event.target === lightbox) closeLightbox();
   });
 
-  document.addEventListener('keydown', function(e){
-    if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+  document.addEventListener('keydown', function(event){
+    if (event.key === 'Escape') {
+      if (lightbox.classList.contains('is-open')) closeLightbox();
+      else if (body.classList.contains('is-sidebar-open') && window.matchMedia('(max-width: 960px)').matches) setSidebar(false);
+    }
   });
+
+  if (window.matchMedia('(max-width: 960px)').matches) {
+    setSidebar(false);
+  }
 })();
 </script>
 
