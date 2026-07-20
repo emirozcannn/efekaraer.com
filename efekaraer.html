@@ -3,554 +3,268 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZAUN TACTICAL GALLERY</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&family=Chakra+Petch:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg-void:#08080b;
-    --bg-panel:#111116;
-    --bg-panel-2:#17171d;
-    --pink:#ff0055;
-    --cyan:#00f3ff;
-    --violet:#8b2fff;
-    --acid:#c6ff2f;
-    --ink:#e9e9ef;
-    --ink-dim:#9a9aa8;
-    --grain-op:0.06;
-  }
-
-  *{box-sizing:border-box;margin:0;padding:0;}
-
-  html{scroll-behavior:smooth;}
-
-  body{
-    background:var(--bg-void);
-    color:var(--ink);
-    font-family:'Rajdhani',sans-serif;
-    font-weight:500;
-    overflow-x:hidden;
-    position:relative;
-    min-height:100vh;
-  }
-
-  /* film grain / grunge overlay */
-  body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:9999;
-    pointer-events:none;
-    opacity:var(--grain-op);
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    mix-blend-mode:overlay;
-  }
-
-  /* vignette + scanline */
-  body::after{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:9998;
-    pointer-events:none;
-    background:
-      radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,0.65) 100%),
-      repeating-linear-gradient(0deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 1px, transparent 2px, transparent 4px);
-  }
-
-  ::selection{ background:var(--pink); color:#000; }
-
-  /* ---------- background texture ---------- */
-  .bg-layer{
-    position:fixed;
-    inset:0;
-    z-index:-2;
-    background:
-      radial-gradient(circle at 15% 20%, rgba(255,0,85,0.10), transparent 40%),
-      radial-gradient(circle at 85% 75%, rgba(0,243,255,0.10), transparent 45%),
-      linear-gradient(180deg, #08080b 0%, #0c0c11 50%, #08080b 100%);
-  }
-  .bg-layer .pipe{
-    position:absolute;
-    border-radius:2px;
-    background:linear-gradient(90deg, transparent, rgba(139,47,255,0.18), transparent);
-  }
-  .bg-layer .pipe.p1{ width:2px; height:70vh; top:0; left:8%; }
-  .bg-layer .pipe.p2{ width:1px; height:50vh; top:20%; right:12%; background:linear-gradient(90deg, transparent, rgba(0,243,255,0.18), transparent);}
-
-  /* ---------- header ---------- */
-  header{
-    position:relative;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:6vh 5vw;
-    overflow:hidden;
-  }
-
-  .rank-tag{
-    font-family:'Chakra Petch',sans-serif;
-    letter-spacing:0.35em;
-    font-size:0.72rem;
-    color:var(--acid);
-    text-transform:uppercase;
-    margin-bottom:1.6rem;
-    border:1px solid rgba(198,255,47,0.35);
-    padding:0.5em 1.1em;
-    background:rgba(198,255,47,0.05);
-    transform:rotate(-1.5deg);
-    position:relative;
-  }
-  .rank-tag::before{
-    content:"●";
-    color:var(--acid);
-    margin-right:0.6em;
-    animation:pulse 1.6s infinite ease-in-out;
-  }
-  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:0.25;} }
-
-  h1.title{
-    font-family:'Rubik Wet Paint', cursive;
-    font-size:clamp(2.4rem, 8vw, 6.2rem);
-    line-height:1.02;
-    letter-spacing:0.01em;
-    color:var(--ink);
-    -webkit-text-stroke:1px rgba(255,255,255,0.06);
-    transform:rotate(-2deg);
-    position:relative;
-    text-shadow:
-      0 0 18px rgba(255,0,85,0.55),
-      0 0 46px rgba(255,0,85,0.25),
-      3px 3px 0 rgba(0,243,255,0.35);
-    max-width:16ch;
-  }
-  h1.title span{
-    display:block;
-    color:var(--pink);
-    font-size:0.42em;
-    letter-spacing:0.06em;
-    margin-top:0.3em;
-    text-shadow:
-      0 0 12px rgba(0,243,255,0.65),
-      0 0 30px rgba(0,243,255,0.3);
-    color:var(--cyan);
-    transform:rotate(1deg);
-  }
-
-  .subline{
-    margin-top:2.2rem;
-    font-family:'Chakra Petch',sans-serif;
-    font-size:0.85rem;
-    letter-spacing:0.28em;
-    text-transform:uppercase;
-    color:var(--ink-dim);
-    display:flex;
-    gap:0.9em;
-    align-items:center;
-  }
-  .subline .dot{ width:5px; height:5px; background:var(--pink); border-radius:50%; box-shadow:0 0 8px var(--pink);}
-
-  .scroll-cue{
-    position:absolute;
-    bottom:3.5rem;
-    font-family:'Chakra Petch',sans-serif;
-    font-size:0.65rem;
-    letter-spacing:0.3em;
-    color:var(--ink-dim);
-    text-transform:uppercase;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:0.6rem;
-  }
-  .scroll-cue .bar{
-    width:1px; height:38px;
-    background:linear-gradient(180deg, var(--cyan), transparent);
-    animation:scrolldown 1.8s infinite;
-  }
-  @keyframes scrolldown{
-    0%{ transform:scaleY(0); transform-origin:top; opacity:0;}
-    40%{ transform:scaleY(1); transform-origin:top; opacity:1;}
-    60%{ transform:scaleY(1); transform-origin:bottom; opacity:1;}
-    100%{ transform:scaleY(0); transform-origin:bottom; opacity:0;}
-  }
-
-  /* ---------- section heading shared ---------- */
-  .section-head{
-    padding:0 6vw;
-    margin:0 auto 3rem;
-    max-width:1400px;
-    display:flex;
-    align-items:baseline;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:1rem;
-    border-bottom:1px dashed rgba(255,255,255,0.12);
-    padding-bottom:1.4rem;
-  }
-  .section-head h2{
-    font-family:'Chakra Petch',sans-serif;
-    font-weight:700;
-    font-size:clamp(1.6rem,3.6vw,2.6rem);
-    text-transform:uppercase;
-    letter-spacing:0.03em;
-    color:var(--ink);
-  }
-  .section-head h2 em{
-    font-style:normal;
-    color:var(--pink);
-    text-shadow:0 0 14px rgba(255,0,85,0.6);
-  }
-  .section-head .meta{
-    font-family:'Chakra Petch',sans-serif;
-    font-size:0.75rem;
-    letter-spacing:0.2em;
-    color:var(--ink-dim);
-    text-transform:uppercase;
-  }
-
-  /* ---------- gallery ---------- */
-  .gallery-wrap{
-    max-width:1400px;
-    margin:0 auto;
-    padding:0 6vw 10vh;
-  }
-
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:2.6rem 2.2rem;
-  }
-
-  .card{
-    position:relative;
-    background:var(--bg-panel);
-    border:1px solid rgba(255,255,255,0.08);
-    padding:0.7rem 0.7rem 1.1rem;
-    cursor:pointer;
-    transition:transform .35s cubic-bezier(.2,.8,.3,1), box-shadow .35s ease, border-color .35s ease;
-    box-shadow:0 10px 30px rgba(0,0,0,0.5);
-  }
-  .card:nth-child(3n+1){ transform:rotate(-2.2deg); }
-  .card:nth-child(3n+2){ transform:rotate(1.6deg); }
-  .card:nth-child(3n+3){ transform:rotate(-1deg); }
-  .card:nth-child(2n){ margin-top:1.6rem; }
-
-  .card:hover{
-    transform:rotate(0deg) translateY(-6px) scale(1.02);
-    border-color:var(--cyan);
-    box-shadow:0 18px 45px rgba(0,243,255,0.18), 0 0 0 1px rgba(0,243,255,0.25);
-    z-index:3;
-  }
-
-  .card .frame{
-    position:relative;
-    overflow:hidden;
-    aspect-ratio:4/5;
-    background:#000;
-    filter:grayscale(35%) contrast(1.05);
-  }
-  .card:hover .frame{ filter:grayscale(0%) contrast(1.1); }
-
-  .card .frame img{
-    width:100%; height:100%;
-    object-fit:cover;
-    display:block;
-    transition:transform .6s ease;
-  }
-  .card:hover .frame img{ transform:scale(1.08); }
-
-  .card .frame::after{
-    content:"";
-    position:absolute; inset:0;
-    background:linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.85) 100%);
-  }
-
-  .card .tag{
-    position:absolute;
-    top:0.9rem; left:0.9rem;
-    font-family:'Chakra Petch',sans-serif;
-    font-size:0.62rem;
-    letter-spacing:0.15em;
-    text-transform:uppercase;
-    background:rgba(8,8,11,0.75);
-    border:1px solid var(--pink);
-    color:var(--pink);
-    padding:0.3em 0.6em;
-    z-index:2;
-  }
-
-  .card .caption{
-    padding-top:0.9rem;
-  }
-  .card .caption .num{
-    font-family:'Chakra Petch',sans-serif;
-    font-size:0.68rem;
-    color:var(--cyan);
-    letter-spacing:0.2em;
-    text-transform:uppercase;
-    display:block;
-    margin-bottom:0.3rem;
-  }
-  .card .caption .cap-title{
-    font-family:'Rajdhani',sans-serif;
-    font-weight:700;
-    font-size:1.05rem;
-    color:var(--ink);
-    letter-spacing:0.01em;
-  }
-
-  /* spray splash accents */
-  .splash{
-    position:absolute;
-    border-radius:50%;
-    filter:blur(40px);
-    opacity:0.35;
-    pointer-events:none;
-    z-index:-1;
-  }
-
-  /* ---------- lightbox ---------- */
-  .lightbox{
-    position:fixed;
-    inset:0;
-    z-index:99999;
-    background:rgba(5,5,8,0.94);
-    backdrop-filter:blur(6px);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    opacity:0;
-    pointer-events:none;
-    transition:opacity .3s ease;
-    padding:4vh 4vw;
-  }
-  .lightbox.active{ opacity:1; pointer-events:auto; }
-
-  .lightbox-inner{
-    position:relative;
-    max-width:min(900px, 90vw);
-    max-height:86vh;
-    transform:scale(0.92);
-    transition:transform .35s cubic-bezier(.2,.8,.3,1);
-  }
-  .lightbox.active .lightbox-inner{ transform:scale(1); }
-
-  .lightbox-inner .frame-lg{
-    border:2px solid var(--cyan);
-    box-shadow:
-      0 0 0 6px rgba(0,0,0,0.6),
-      0 0 40px rgba(0,243,255,0.45),
-      0 0 90px rgba(255,0,85,0.25);
-    overflow:hidden;
-    background:#000;
-  }
-  .lightbox-inner img{
-    display:block;
-    width:100%;
-    max-height:74vh;
-    object-fit:contain;
-    background:#000;
-  }
-  .lightbox-caption{
-    margin-top:1rem;
-    text-align:center;
-    font-family:'Chakra Petch',sans-serif;
-    letter-spacing:0.12em;
-    color:var(--ink-dim);
-    text-transform:uppercase;
-    font-size:0.8rem;
-  }
-  .lightbox-caption b{ color:var(--pink); }
-
-  .lb-close{
-    position:absolute;
-    top:-2.6rem; right:0;
-    background:none;
-    border:1px solid var(--pink);
-    color:var(--pink);
-    width:2.4rem; height:2.4rem;
-    font-size:1.1rem;
-    cursor:pointer;
-    font-family:'Chakra Petch',sans-serif;
-    transition:all .2s ease;
-  }
-  .lb-close:hover{ background:var(--pink); color:#000; box-shadow:0 0 20px var(--pink); }
-
-  .lb-nav{
-    position:absolute;
-    top:50%; transform:translateY(-50%);
-    background:rgba(8,8,11,0.6);
-    border:1px solid rgba(255,255,255,0.2);
-    color:var(--ink);
-    width:2.8rem; height:2.8rem;
-    cursor:pointer;
-    font-size:1.2rem;
-    font-family:'Chakra Petch',sans-serif;
-    transition:all .2s ease;
-  }
-  .lb-nav:hover{ border-color:var(--cyan); color:var(--cyan); }
-  .lb-prev{ left:-3.6rem; }
-  .lb-next{ right:-3.6rem; }
-  @media (max-width:720px){
-    .lb-prev{ left:0.4rem; }
-    .lb-next{ right:0.4rem; }
-  }
-
-  /* ---------- footer ---------- */
-  footer{
-    position:relative;
-    padding:8vh 6vw 6vh;
-    text-align:center;
-    border-top:1px dashed rgba(255,255,255,0.12);
-  }
-  footer .foot-title{
-    font-family:'Rubik Wet Paint', cursive;
-    font-size:clamp(1.2rem,3vw,2rem);
-    color:var(--ink);
-    text-shadow:0 0 20px rgba(255,0,85,0.45), 2px 2px 0 rgba(0,243,255,0.3);
-    transform:rotate(-1deg);
-    display:inline-block;
-  }
-  footer .foot-sub{
-    margin-top:1rem;
-    font-family:'Chakra Petch',sans-serif;
-    font-size:0.7rem;
-    letter-spacing:0.25em;
-    color:var(--ink-dim);
-    text-transform:uppercase;
-  }
-
-  @media (max-width:600px){
-    .card:nth-child(2n){ margin-top:0; }
-  }
-</style>
+<title>SANSARSALVO55 // ZAUN TACTICAL GALLERY</title>
+<meta name="description" content="SANSARSALVO55 — Zaun Undercity tarzı meme &amp; görsel galerisi.">
+<link rel="stylesheet" href="efekaraer.css">
 </head>
 <body>
 
-  <div class="bg-layer">
-    <div class="pipe p1"></div>
-    <div class="pipe p2"></div>
+<!-- hidden SVG noise filter, used by .grain overlay -->
+<svg width="0" height="0" style="position:absolute">
+  <filter id="zaunNoise">
+    <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="noise"/>
+    <feColorMatrix in="noise" type="matrix"
+      values="0 0 0 0 0
+              0 0 0 0 0
+              0 0 0 0 0
+              0 0 0 0.9 0"/>
+  </filter>
+</svg>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<nav class="dock" aria-label="Hızlı gezinme">
+  <a href="#augments">Augments</a>
+  <a href="#wall">Art Wall</a>
+  <a href="#comms">Comms</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <p class="hero__eyebrow">Undercity Broadcast · Kanal 07</p>
+  <h1 class="glitch" data-text="SANSARSALVO55">
+    <span>SANSARSALVO55</span>
+    <span class="accent">// ZAUN TACTICAL GALLERY</span>
+  </h1>
+  <p class="hero__sub">Rank: <b>Master</b> — Underground Intel Node</p>
+  <p class="hero__scan">▓▒░ sinyal taranıyor · efe karaer · zaun sektör 7 ░▒▓</p>
+</header>
+
+<!-- ============ TACTICAL AUGMENTS ============ -->
+<section class="section" id="augments">
+  <div class="section__head">
+    <span class="section__num">◇ 01</span>
+    <h2 class="section__title">Taktiksel <em>Eklentiler</em></h2>
+    <p class="section__desc">Efe'nin dijital kimliği — Piltover'ın temiz sosyal ikonları değil, Zaun'un kablolanmış sinir uçları.</p>
   </div>
 
-  <!-- HEADER -->
-  <header>
-    <div class="rank-tag">Rank: Master — Strategy &amp; Memes</div>
-    <h1 class="title">SANSARSALVO55<span>// ZAUN TACTICAL GALLERY</span></h1>
-    <div class="subline">
-      <span>Exhibits Curated Below</span>
-      <span class="dot"></span>
-      <span>Undercity Archive</span>
-    </div>
-    <div class="scroll-cue">
-      <span>Scroll</span>
-      <span class="bar"></span>
-    </div>
-  </header>
+  <div class="augments">
 
-  <!-- GALLERY -->
-  <section id="gallery" class="gallery-wrap">
-    <div class="section-head">
-      <h2>The Art <em>Wall</em></h2>
-      <div class="meta">08 Exhibits — Undercity Wing</div>
-    </div>
+    <!-- RADAR INTERFACE -->
+    <article class="aug-card" style="--edge:var(--cyan)">
+      <svg class="aug-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+        <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/>
+        <line x1="12" y1="12" x2="19" y2="6"/>
+      </svg>
+      <span class="aug-card__tag">Radar Interface</span>
+      <h3 class="aug-card__title">OP.GG</h3>
+      <p class="aug-card__desc">Canlı KDA ve mental çöküş matrisi.</p>
+      <a class="aug-card__link" href="https://op.gg/lol/summoners/tr/SANSARSALVO55-DEL%C4%B0" target="_blank" rel="noopener">Sinyali aç</a>
+    </article>
 
-    <div class="grid" id="grid"></div>
-  </section>
+    <!-- TACTICAL INTEL -->
+    <article class="aug-card" style="--edge:var(--acid)">
+      <svg class="aug-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+        <rect x="4" y="4" width="16" height="16" rx="1"/>
+        <path d="M8 9h8M8 12h8M8 15h5"/>
+      </svg>
+      <span class="aug-card__tag">Tactical Intel</span>
+      <h3 class="aug-card__title">MetaTFT</h3>
+      <p class="aug-card__desc">Hyper-roll ve dahi strateji veri merkezi.</p>
+      <a class="aug-card__link" href="https://www.metatft.com/player/tr/SANSARSALVO55-DEL%C4%B0" target="_blank" rel="noopener">Sinyali aç</a>
+    </article>
 
-  <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox">
-    <div class="lightbox-inner">
-      <button class="lb-nav lb-prev" id="lbPrev">‹</button>
-      <button class="lb-close" id="lbClose">✕</button>
-      <div class="frame-lg">
-        <img id="lbImg" src="" alt="">
+    <!-- ZAUN BOOMBOX -->
+    <article class="aug-card" style="--edge:var(--pink)">
+      <svg class="aug-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+        <rect x="3" y="7" width="18" height="12" rx="1.5"/>
+        <circle cx="8" cy="13" r="2.4"/><circle cx="16" cy="13" r="2.4"/>
+        <path d="M9 7l1-3h4l1 3"/>
+      </svg>
+      <span class="aug-card__tag">Zaun Boombox</span>
+      <h3 class="aug-card__title">Spotify</h3>
+      <p class="aug-card__desc">LP kaybederken dinlenecek öfkeli ritimler.</p>
+      <a class="aug-card__link" href="https://open.spotify.com/user/11145638018?si=6Cn7l12bRzivJ0KYelxjyQ" target="_blank" rel="noopener">Sinyali aç</a>
+    </article>
+
+    <!-- CORPORATE MASK -->
+    <article class="aug-card" style="--edge:var(--sulfur)">
+      <svg class="aug-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+        <path d="M12 3c4 0 7 3 7 7v4c0 4-3 7-7 7s-7-3-7-7V10c0-4 3-7 7-7Z"/>
+        <path d="M9 11h.01M15 11h.01M9 15c1 1 5 1 6 0"/>
+      </svg>
+      <span class="aug-card__tag">Corporate Mask</span>
+      <h3 class="aug-card__title">LinkedIn</h3>
+      <p class="aug-card__desc">Piltover elitleri için kurumsal arayüz layer'ı.</p>
+      <a class="aug-card__link" href="https://www.linkedin.com/in/efekaraer" target="_blank" rel="noopener">Sinyali aç</a>
+    </article>
+
+    <!-- MAIN NODE -->
+    <article class="aug-card" style="--edge:var(--cyan)">
+      <svg class="aug-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+        <path d="M4 17l4-10 4 10M6.5 11h3M14 7h6M14 12h6M14 17h4"/>
+      </svg>
+      <span class="aug-card__tag">Main Node</span>
+      <h3 class="aug-card__title">efekaraer.com</h3>
+      <p class="aug-card__desc">Ana merkez ağ bağlantısı ve geliştirici terminali.</p>
+      <a class="aug-card__link" href="http://efekaraer.com" target="_blank" rel="noopener">Sinyali aç</a>
+    </article>
+
+    <!-- ENCRYPTED COMMS -->
+    <article class="aug-card" id="comms" style="--edge:var(--acid)">
+      <svg class="aug-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+        <rect x="5" y="10" width="14" height="10" rx="1.5"/>
+        <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+        <circle cx="12" cy="15" r="1.4" fill="currentColor" stroke="none"/>
+      </svg>
+      <span class="aug-card__tag">Encrypted Comms</span>
+      <h3 class="aug-card__title">E-posta</h3>
+      <p class="aug-card__desc">Şifreli taktiksel işbirlikleri kanalı.</p>
+      <a class="aug-card__link" href="mailto:efekaraer00@gmail.com">Sinyali aç</a>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ ART WALL ============ -->
+<section class="section" id="wall">
+  <div class="section__head">
+    <span class="section__num">◇ 02</span>
+    <h2 class="section__title">The Art <em>Wall</em></h2>
+    <p class="section__desc">Duvara sıkıştırılmış sokak posterleri. Her biri bir sergi — her sergi bir travma. Görsellere tıkla, büyüsün.</p>
+  </div>
+
+  <div class="wall" id="wallGrid">
+
+    <button class="wall-card" data-idx="0">
+      <img class="wall-card__img" src="https://picsum.photos/seed/zaun-01/900/1100" alt="" loading="lazy">
+      <div class="wall-card__duo" aria-hidden="true"></div>
+      <span class="wall-card__stamp">#01</span>
+      <div class="wall-card__plate">
+        <p class="num">Exhibition #01</p>
+        <p class="cap">The Final Board — 7. seviyede 0 altınla kalma sanatı.</p>
       </div>
-      <div class="lightbox-caption" id="lbCaption"></div>
-      <button class="lb-nav lb-next" id="lbNext">›</button>
-    </div>
+    </button>
+
+    <button class="wall-card" data-idx="1">
+      <img class="wall-card__img" src="https://picsum.photos/seed/zaun-02/900/700" alt="" loading="lazy">
+      <div class="wall-card__duo" aria-hidden="true"></div>
+      <span class="wall-card__stamp">#02</span>
+      <div class="wall-card__plate">
+        <p class="num">Canvas #02</p>
+        <p class="cap">Unmatched Pivot — Lobiyi şoke eden 8. bitiş stratejisi.</p>
+      </div>
+    </button>
+
+    <button class="wall-card" data-idx="2">
+      <img class="wall-card__img" src="https://picsum.photos/seed/zaun-03/700/700" alt="" loading="lazy">
+      <div class="wall-card__duo" aria-hidden="true"></div>
+      <span class="wall-card__stamp">#03</span>
+      <div class="wall-card__plate">
+        <p class="num">Relic #03</p>
+        <p class="cap">Flash'ı Duvara Atma Enstalasyonu — 40 dk'lık bir pişmanlık.</p>
+      </div>
+    </button>
+
+    <button class="wall-card" data-idx="3">
+      <img class="wall-card__img" src="https://picsum.photos/seed/zaun-04/800/1200" alt="" loading="lazy">
+      <div class="wall-card__duo" aria-hidden="true"></div>
+      <span class="wall-card__stamp">#04</span>
+      <div class="wall-card__plate">
+        <p class="num">Fragment #04</p>
+        <p class="cap">Baron'u Çalma Heykeli — smite şansının %1'lik anıtı.</p>
+      </div>
+    </button>
+
+    <button class="wall-card" data-idx="4">
+      <img class="wall-card__img" src="https://picsum.photos/seed/zaun-05/750/750" alt="" loading="lazy">
+      <div class="wall-card__duo" aria-hidden="true"></div>
+      <span class="wall-card__stamp">#05</span>
+      <div class="wall-card__plate">
+        <p class="num">Study #05</p>
+        <p class="cap">"İyi Şanslar Arkadaşlar" — savaş öncesi son yalanın portresi.</p>
+      </div>
+    </button>
+
+    <button class="wall-card" data-idx="5">
+      <img class="wall-card__img" src="https://picsum.photos/seed/zaun-06/900/650" alt="" loading="lazy">
+      <div class="wall-card__duo" aria-hidden="true"></div>
+      <span class="wall-card__stamp">#06</span>
+      <div class="wall-card__plate">
+        <p class="num">Piece #06</p>
+        <p class="cap">Zafer Serisi — 3 galibiyet, 1 modem çökmesiyle kesintiye uğradı.</p>
+      </div>
+    </button>
+
   </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="foot-title">SANSARSALVO55 — ALL RIGHTS RESERVED IN ZAUN</div>
-    <div class="foot-sub">Undercity Archive · Handle With Care</div>
-  </footer>
+<!-- ============ LIGHTBOX ============ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="lightbox__frame">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Kapat">✕</button>
+    <img id="lightboxImg" src="" alt="">
+    <p class="lightbox__caption" id="lightboxCaption"></p>
+  </div>
+</div>
 
-  <script>
-    const exhibits = [
-      { n:"01", tag:"Exhibition", title:"The Final Board", cap:"State of the Republic", seed:"zaun-01" },
-      { n:"02", tag:"Canvas", title:"Unmatched Pivot", cap:"A Study in Motion", seed:"zaun-02" },
-      { n:"03", tag:"Relic", title:"Chembaron's Ledger", cap:"Undercity Accounting", seed:"zaun-03" },
-      { n:"04", tag:"Exhibition", title:"Hextech Overclock", cap:"Piltover Runoff", seed:"zaun-04" },
-      { n:"05", tag:"Canvas", title:"Last Call at the Lanes", cap:"Neon Hour", seed:"zaun-05" },
-      { n:"06", tag:"Fragment", title:"Shimmer Static", cap:"Signal Loss", seed:"zaun-06" },
-      { n:"07", tag:"Exhibition", title:"Bridge Riot Sketch", cap:"Crowd Study", seed:"zaun-07" },
-      { n:"08", tag:"Canvas", title:"The Long Climb", cap:"Topside Ascent", seed:"zaun-08" }
-    ];
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <span class="footer__mark">SANSARSALVO55 // ALL RIGHTS RESERVED IN THE RADS OF ZAUN</span>
+  <p class="footer__meta">Sector 7 · Undercity Broadcast Network</p>
+</footer>
 
-    const grid = document.getElementById('grid');
-    exhibits.forEach((ex, i) => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.dataset.index = i;
-      card.innerHTML = `
-        <div class="frame">
-          <span class="tag">${ex.tag}</span>
-          <img src="https://picsum.photos/seed/${ex.seed}/700/860" alt="${ex.title}" loading="lazy">
-        </div>
-        <div class="caption">
-          <span class="num">${ex.tag} #${ex.n}</span>
-          <span class="cap-title">${ex.title}</span>
-        </div>
-      `;
-      grid.appendChild(card);
-    });
+<script>
+(function(){
+  "use strict";
 
-    // lightbox logic
-    const lightbox = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lbImg');
-    const lbCaption = document.getElementById('lbCaption');
-    let current = 0;
+  var wall = document.getElementById('wallGrid');
+  var lightbox = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lightboxImg');
+  var lbCaption = document.getElementById('lightboxCaption');
+  var lbClose = document.getElementById('lightboxClose');
+  var lastFocused = null;
 
-    function openLightbox(i){
-      current = i;
-      updateLB();
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-    function updateLB(){
-      const ex = exhibits[current];
-      lbImg.src = `https://picsum.photos/seed/${ex.seed}/1200/1400`;
-      lbImg.alt = ex.title;
-      lbCaption.innerHTML = `<b>${ex.tag} #${ex.n}</b> — ${ex.title} · ${ex.cap}`;
-    }
-    function closeLightbox(){
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
-    }
+  function openLightbox(card){
+    var img = card.querySelector('.wall-card__img');
+    var num = card.querySelector('.num').textContent;
+    var cap = card.querySelector('.cap').textContent;
 
-    document.querySelectorAll('.card').forEach(card => {
-      card.addEventListener('click', () => openLightbox(parseInt(card.dataset.index)));
-    });
+    lbImg.src = img.src.replace(/\/\d+\/\d+$/, '/1400/1400');
+    lbImg.alt = cap;
+    lbCaption.innerHTML = '<b>' + num + '</b> — ' + cap;
 
-    document.getElementById('lbClose').addEventListener('click', closeLightbox);
-    document.getElementById('lbPrev').addEventListener('click', () => { current = (current - 1 + exhibits.length) % exhibits.length; updateLB(); });
-    document.getElementById('lbNext').addEventListener('click', () => { current = (current + 1) % exhibits.length; updateLB(); });
+    lastFocused = document.activeElement;
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    lbClose.focus();
+    document.body.style.overflow = 'hidden';
+  }
 
-    lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox(); });
+  function closeLightbox(){
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastFocused) lastFocused.focus();
+  }
 
-    document.addEventListener('keydown', (e) => {
-      if(!lightbox.classList.contains('active')) return;
-      if(e.key === 'Escape') closeLightbox();
-      if(e.key === 'ArrowLeft') { current = (current - 1 + exhibits.length) % exhibits.length; updateLB(); }
-      if(e.key === 'ArrowRight') { current = (current + 1) % exhibits.length; updateLB(); }
-    });
-  </script>
+  wall.addEventListener('click', function(e){
+    var card = e.target.closest('.wall-card');
+    if (card) openLightbox(card);
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+
+  lightbox.addEventListener('click', function(e){
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+  });
+})();
+</script>
 
 </body>
-</html>s
+</html>
