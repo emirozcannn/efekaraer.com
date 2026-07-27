@@ -305,8 +305,23 @@ body:not(.is-sidebar-open) .main{ margin-left: 0; }
   background:
     linear-gradient(180deg, rgba(7,9,14,0.00) 0%, rgba(7,9,14,0.18) 55%, rgba(7,9,14,0.60) 100%),
     repeating-linear-gradient(115deg, rgba(255,0,85,0.05) 0 2px, transparent 2px 26px),
-    repeating-linear-gradient(25deg, rgba(0,243,255,0.045) 0 2px, transparent 2px 30px);
+    repeating-linear-gradient(25deg, rgba(0,243,255,0.045) 0 2px, transparent 2px 30px),
+    url('efek.com.jpg');
+  background-size: auto, auto, auto, cover;
+  background-position: center, center, center, center;
+  background-repeat: no-repeat;
   border-bottom: 1px solid var(--line);
+}
+
+body:not(.is-sidebar-open) .hero{
+  background:
+    linear-gradient(180deg, rgba(7,9,14,0.00) 0%, rgba(7,9,14,0.18) 55%, rgba(7,9,14,0.60) 100%),
+    repeating-linear-gradient(115deg, rgba(255,0,85,0.05) 0 2px, transparent 2px 26px),
+    repeating-linear-gradient(25deg, rgba(0,243,255,0.045) 0 2px, transparent 2px 30px),
+    url('efek.com2.jpg');
+  background-size: auto, auto, auto, cover;
+  background-position: center, center, center, center;
+  background-repeat: no-repeat;
 }
 
 .hero__lead{
