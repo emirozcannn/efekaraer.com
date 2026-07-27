@@ -310,11 +310,11 @@ body:not(.is-sidebar-open) .main{ margin-left: 0; }
 }
 
 .hero__lead{
-  max-width: 68ch;
+  max-width: 80ch;
   color: var(--ink-dim);
   font-size: 1.02rem;
   line-height: 1.75;
-  margin: 24px 0 0;
+  margin: 26px 0 0;
 }
 
 .hero__chips{
@@ -678,6 +678,19 @@ body:not(.is-sidebar-open) .main{ margin-left: 0; }
 }
 
 .signal-card:hover{ transform: translateY(-4px); border-color: rgba(109,216,200,0.28); }
+
+.signal-card__head{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.signal-card__icon{
+  width: 1.05rem;
+  height: 1.05rem;
+  flex: 0 0 auto;
+  color: var(--accent-2);
+}
 
 .signal-card strong{ margin: 0; }
 
