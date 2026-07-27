@@ -330,6 +330,30 @@ body:not(.is-sidebar-open) .hero{
   font-size: 1.02rem;
   line-height: 1.75;
   margin: 26px 0 0;
+  display: grid;
+  gap: 10px;
+}
+
+.hero__lead-main{
+  color: var(--ink);
+  text-shadow: 0 6px 18px rgba(0,0,0,0.45);
+}
+
+.hero__lead-contact{
+  display: inline-block;
+  width: fit-content;
+  padding: 8px 12px;
+  border: 1px solid rgba(0,243,255,0.4);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.28);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.hero__lead-contact a{
+  color: #9beeff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .hero__chips{
